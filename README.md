@@ -21,6 +21,10 @@ Feature utili per la Biblioteca :
 - **Shard & replica (scalabilità)**  
     per scalare facilmente orizzontalmente o garantire alta disponibilità.
 
+# Creazione database NoSQL per una biblioteca
+1. Setup dell’ambiente per lavorare con un database NoSQL abbiamo scelto MongoDB, un database documentale che salva i dati in formato JSON-like (BSON).
+2. Registrarsi su MongoDB Atlas, Creare un cluster gratuito , Creare un database chiamato biblioteca, Usare le credenziali per connettersi da applicazioni esterne (es. app web)
+
 **Struttura sulle Collezioni** :
 - **libri**
 - **autori**
