@@ -28,6 +28,13 @@ Feature utili per la Biblioteca :
 - **utenti**
 - **prestiti**
 
+Relazioni :
+
+LIBRI (1:N) ← PRESTITI
+LIBRI (N:N) → AUTORI  
+LIBRI (N:1) → CATEGORIE  
+LIBRI (1:N) → UTENTI  
+
 -- Libro 
 Libro → Autori (many-to-many)→ Referencing ho scelto questo per queste ragioni:
 - Un autore può scrivere **molti libri**.
@@ -50,3 +57,45 @@ prestito → libro / utente (many-to-one): referencing ho scelto questo per ragi
 - Il prestito si riferisce a un solo libro e un solo utente → semplice relazione many-to-one.
 - I dati del libro o utente **possono cambiare**, ma il prestito vuole **fotografare il riferimento originale**.
 - Non ha senso embeddare tutto il libro/utente ogni volta troppa duplicazione.
+
+# Script 
+Lo script usa una libreria chiamata pymongo per connettersi a MongoDB.
+Serve indicare l’indirizzo del server (es. mongodb://localhost:27017) e il nome del database.
+All’interno dello script ci sono liste di dati per ogni collezione:
+- autori
+- libri
+- utenti
+- prestiti
+Per ogni lista, lo script crea la collezione corrispondente (se non esiste già) e inserisce i documenti con i dati.
+
+Perché usare questo script?
+- Evita di inserire manualmente i dati uno a uno
+- Serve a popolare velocemente il database con dati di prova
+- Puoi modificarlo per aggiungere altri dati o cambiare i campi
+
+Cosa ti serve per usarlo?
+- Avere MongoDB installato e in esecuzione
+- Installare la libreria Python pymongo (comando: pip install pymongo)
+- Avere Python installato sul computer
+
+Come utilizzarlo :
+- Apri il terminale o prompt dei comandi, vai nella cartella dove hai salvato il file, esempio: cd C:\Users\TUO_NOME_UTENTE\Desktop
+- Poi esegui: python script.py
+
+
+# Script per importare i dati su MongoDB
+Assicurati che MongoDB sia in esecuzione, poi apri il terminale o prompt dei comandi e usa:
+
+```bash
+mongoimport --db biblioteca --collection autori --file "$HOME/Desktop/json_biblioteca/autori.json" --jsonArray
+mongoimport --db biblioteca --collection libri --file "$HOME/Desktop/json_biblioteca/libri.json" --jsonArray
+mongoimport --db biblioteca --collection utenti --file "$HOME/Desktop/json_biblioteca/utenti.json" --jsonArray
+mongoimport --db biblioteca --collection prestiti --file "$HOME/Desktop/json_biblioteca/prestiti.json" --jsonArray
+```
+su Windows : 
+```cmd
+mongoimport --db biblioteca --collection autori --file "%USERPROFILE%\Desktop\json_biblioteca\autori.json" --jsonArray
+mongoimport --db biblioteca --collection libri --file "%USERPROFILE%\Desktop\json_biblioteca\libri.json" --jsonArray
+mongoimport --db biblioteca --collection utenti --file "%USERPROFILE%\Desktop\json_biblioteca\utenti.json" --jsonArray
+mongoimport --db biblioteca --collection prestiti --file "%USERPROFILE%\Desktop\json_biblioteca\prestiti.json" --jsonArray
+```
