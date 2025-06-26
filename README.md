@@ -45,7 +45,7 @@ Libro → Autori (many-to-many)→ Referencing ho scelto questo per queste ragio
 - Un libro può avere **più autori**.
 - Immagino che la categoria è solo una stringa, e può essere embeddato direttamente nel documento libro.
 - Evitare la duplicazione se uso embedding, pechè senno ogni volta che un autore scrive un nuovo libro, devo duplicare i suoi dati in più punti.
-- Gli autori possono avere biografie, premi quindi documenti pesanti.
+- Gli autori possono avere biografie, quindi documenti pesanti.
 - Referencing ti consente di **modificare un autore una sola volta** e visto perché i prestiti crescono nel tempo e ogni libro può essere prestato centinaia di volte embeddarli renderebbe il documento troppo grande e ingestibile, meglio salvare i prestiti in una collezione separata.
 
 -- Utente
